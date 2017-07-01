@@ -145,6 +145,9 @@ The bitcoin node then receives a new block from the network, which it parses as 
 
 Looking at this new block, the node finds the +previousblockhash+ field, which contains the hash of its parent block. It is a hash known to the node, that of the last block on the chain at height 277,314. Therefore, this new block is a child of the last block on the chain and extends the existing blockchain. The node adds this new block to the end of the chain, making the blockchain longer with a new height of 277,315. <<chain_of_blocks>> shows the chain of three blocks, linked by references in the +previousblockhash+ field.
 
+[[chain_of_blocks]]
+.Blocks linked in a chain, by reference to the previous block header hash
+image::images/msbt_0701.png[]
 
 [[merkle_trees]]
 === Merkle Trees
@@ -152,10 +155,6 @@ Looking at this new block, the node finds the +previousblockhash+ field, which c
 ((("blockchains","merkle trees and", id="ix_ch07-asciidoc1", range="startofrange")))((("merkle trees", id="ix_ch07-asciidoc2", range="startofrange")))Each block in the bitcoin blockchain contains a summary of all the transactions in the block, using a _merkle tree_.
 
 A _merkle tree_, also known as a((("binary hash tree"))) _binary hash tree_, is a data structure used for efficiently summarizing and verifying the integrity of large sets of data. Merkle trees are binary trees containing cryptographic hashes. The term "tree" is used in computer science to describe a branching data structure, but these trees are usually displayed upside down with the "root" at the top and the "leaves" at the bottom of a diagram, as you will see in the examples that follow.
-
-[[chain_of_blocks]]
-.Blocks linked in a chain, by reference to the previous block header hash
-image::images/msbt_0701.png[]
 
 Merkle trees are used in bitcoin to summarize all the transactions in a block, producing an overall digital fingerprint of the entire set of transactions, providing a very efficient process to verify whether a transaction is included in a block. A((("Merkle trees","constructing"))) Merkle tree is constructed by recursively hashing pairs of nodes until there is only one hash, called the _root_, or _merkle root_. The cryptographic hash algorithm used in bitcoin's merkle trees is SHA256 applied twice, also known as double-SHA256. 
 
